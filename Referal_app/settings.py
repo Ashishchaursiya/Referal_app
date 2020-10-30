@@ -131,9 +131,11 @@ USE_TZ = True
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'chaurasiyaashish383@gmail.com'
-EMAIL_HOST_PASSWORD = ';@PT7Qd_cBk3Q@Jhgtfffffff43212'
+EMAIL_HOST_PASSWORD = 'dgsaslcpljnzwzdk'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Referal Team <noreply@example.com>'
+DEFAULT_FROM_EMAIL = 'Referal_App Team <noreply@chaurasiyaashish383.com>'
+ 
