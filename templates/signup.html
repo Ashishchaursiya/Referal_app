@@ -1,0 +1,81 @@
+{% extends "new_basic.html" %}
+ 
+{% block body%}
+ 
+{% if error %}
+<div style="position: relative;z-index: 100;">
+  <div class="toast" data-autohide="false" style="position: absolute;right: 0;top:0">
+      <div class="toast-header">
+        <strong class="mr-auto text-primary">Warning</strong>
+        
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+      </div>
+      <div class="toast-body">
+          <div class="alert alert-danger">
+              {{error}}
+          </div>
+      </div>
+    </div>
+</div>
+{% endif%}
+<div class="container py-5">
+  
+ <div class="row">
+    <div class="col-lg-6 mx-auto">
+        <h2 class="text-center" style="font-weight: 600;"> Earn Bajar</h2>
+        <form action="{% url 'signup' %}" method="POST">  {% csrf_token %}
+            <div class="form-group">
+                <label for="inputAddress">Username</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Username" name="username">
+              </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">First name</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="First name" name="fname">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Last name</label>
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Last name" name="lname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Email</label>
+              <input type="email" class="form-control"  placeholder="Email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2">Password</label>
+              <input type="password" class="form-control" id="inputAddress2" placeholder="Password" name='pass'>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Confirm Password</label>
+                <input type="password" class="form-control"  placeholder="Re enter password" name="pass1">
+              </div>
+          
+             
+            <button type="submit" class="btn btn-primary">Sign up</button>
+          </form>
+          <a href="{% url 'signin' %}" class="primary">already have a account, Sign In</a>
+    </div>
+   
+ </div>
+ 
+         
+    </div>
+    
+   
+
+{% endblock %}
+{% block js %} 
+<script>
+    $(document).ready(function(){
+      $('.toast').toast('show')
+    
+ })
+    
+     
+   
+    
+
+ </script>
+    
+ {% endblock %}

@@ -1,0 +1,91 @@
+{% extends "new_basic.html" %}
+ {% block title %}  payment page  {% endblock %}
+
+ {% block body %}  
+  
+ {% if payment %}
+ <div class="container mx-auto text-center p-5">
+ <form action="{% url 'success' referal %}" method="POST"> {% csrf_token %}
+  <script src="https://checkout.razorpay.com/v1/checkout.js" 
+  data-key="rzp_test_fLkLtmNTfcNSbw" 
+  data-amount="{{payment.amount}}" 
+  data-currency="INR"  
+  data-order_id="{{payment.id}}" 
+  data-buttontext="Pay with Razorpay" 
+  data-name="Earn Bajar" 
+  data-description="Test transaction"
+  data-image="https://example.com/your_logo.jpg" 
+  data-prefill.name="Gaurav Kumar"  
+  data-prefill.email="gaurav.kumar@example.com"  
+  data-prefill.contact="9999999999" 
+  
+  data-theme.color="#035aa6">
+  </script>
+  <input type="hidden" custom="Hidden Element" name="hidden">
+  </form>
+</div>
+{% else %}
+<div class="container p-5">
+  <form action="{% url 'checkout' %}" method="POST">  {% csrf_token %}
+ 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">UPI_ID</label>
+          <input type="text" class="form-control" id="inputEmail4" placeholder="UPI_ID" name="upi" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">REFER_BY</label>
+          <input type="text" class="form-control" id="inputPassword4" placeholder="REFERAL_ID" name="referal" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Amount</label>
+        <input type="number" class="form-control" id="amount" placeholder="amount" name="amount" value="" readonly>
+      </div>
+    
+       
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputCity">Phone</label>
+          <input type="phone" class="form-control" id="inputCity" placeholder="Phone" name="phone" required>
+        </div>
+       
+       
+      </div>
+       
+      <button type="submit" class="btn btn-primary" id="pays"> PROCCED TO PAY</button>
+    </form>
+
+</div>
+
+
+{% endif %}
+
+
+ 
+
+
+
+
+
+
+ {%  block js %}
+ <script>
+  $(document).ready(function(){
+    
+  let price=localStorage.getItem('plan')
+  $("#amount").val(price)
+  localStorage.clear();
+ 
+
+  
+  });
+
+</script>
+ {% endblock %}
+
+ 
+ {% endblock %}
+
+
+ 
